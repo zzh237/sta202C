@@ -5,6 +5,8 @@ from collections import defaultdict
 import sys
 from tqdm import tqdm
 
+random.seed(7)
+
 class Lattice():
     
     def __init__(self, n=10) -> None:
