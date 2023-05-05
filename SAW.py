@@ -31,14 +31,12 @@ class Lattice():
     #         self.plot_longest_trail_n_n('random_walk')
 
    
-
-
-
-    
-    def random_walks(self, M):
+    def random_walks(self, M, id):
         'walk M times'
+        exps = {1:self.random_walk_1, 2:self.random_walk_2, \
+                3:self.random_walk_3}
         for m in tqdm(range(M)):
-            self.random_walk_3()                 
+            exps[id]()                 
         self.estimate =  np.cumsum(np.array(self.record)) / np.arange(1,len(self.record)+1)
 
     def random_walks_to_n_n(self, M):
@@ -349,18 +347,23 @@ random.seed(42)
 
 
 M = int(1e7)
+
 lattice = Lattice(n=10)
 # K = lattice.start_different(M)
 # print('estimate K = ', K)
+
+for id in [1,2,3]:
+    lattice.random_walks(M, id)
+    lattice.print_result('random_walk_design_{}'.format(id))
+    lattice.plot_hist('random_walk_design_{}'.format(id))
+    lattice.plot_longest_trail('random_walk_design_{}'.format(id))
+
 lattice.random_walks_to_n_n(M)
 lattice.print_result_n_n('random_walk_')
 lattice.plot_hist_n_n('random_walk_')
 lattice.plot_longest_trail_n_n('random_walk_')
 
-# lattice.random_walks(M)
-# lattice.print_result('random_walk_design_3')
-# lattice.plot_hist('random_walk_design_3')
-# lattice.plot_longest_trail('random_walk_design_3')
+
 
 
 
