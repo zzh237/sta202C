@@ -5,7 +5,6 @@ from collections import defaultdict
 import sys
 from tqdm import tqdm
 
-random.seed(7)
 
 class Lattice():
     
@@ -343,7 +342,7 @@ def sanity_check():
         lattice.random_walks_to_n_n(int(1e5))
         print(f'n={i}, estimated K of SAWS ending at (n,n) is {lattice.estimate_n_n[-1]}')
 
-random.seed(42)
+random.seed(7)
 
 
 M = int(1e7)
@@ -352,16 +351,20 @@ lattice = Lattice(n=10)
 # K = lattice.start_different(M)
 # print('estimate K = ', K)
 
-for id in [1,2,3]:
+for id in [4]:
+  if id == 4:
+    lattice.random_walks_to_n_n(M)
+    lattice.print_result_n_n('random_walk_')
+    lattice.plot_hist_n_n('random_walk_')
+    lattice.plot_longest_trail_n_n('random_walk_')
+  else:
     lattice.random_walks(M, id)
     lattice.print_result('random_walk_design_{}'.format(id))
     lattice.plot_hist('random_walk_design_{}'.format(id))
     lattice.plot_longest_trail('random_walk_design_{}'.format(id))
+    
 
-lattice.random_walks_to_n_n(M)
-lattice.print_result_n_n('random_walk_')
-lattice.plot_hist_n_n('random_walk_')
-lattice.plot_longest_trail_n_n('random_walk_')
+
 
 
 
