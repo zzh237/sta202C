@@ -252,7 +252,7 @@ class Lattice():
         counts = [self.count_length.get(i, 0) for i in range(120)]
         counts = np.array(counts) 
         counts = counts/counts.sum() * self.estimate[-1]
-        plt.plot(counts)
+        plt.plot(counts, color='green')
         plt.title('histgram of length N')
         plt.savefig(f'{name}_histgram')
         plt.show()
@@ -262,7 +262,7 @@ class Lattice():
         counts = [self.count_length_n_n.get(i, 0) for i in range(120)]
         counts = np.array(counts) 
         counts = counts/counts.sum() * self.estimate_n_n[-1]
-        plt.plot(counts)
+        plt.plot(counts, color='green')
         plt.title('histgram of length N')
         plt.savefig(f'{name}_histgram_n_n')
         plt.show()
@@ -274,14 +274,14 @@ class Lattice():
 
     def print_result(self, name):
         plt.figure()
-        plt.loglog(range(len(self.estimate)), self.estimate)
+        plt.loglog(range(len(self.estimate)), self.estimate, color='green')
         plt.title(f'log(K)~log(m),{self.start} estimate:{self.estimate[-1]:.3e}')
         plt.savefig(f'{name}_loglog.png')
         plt.show()
 
     def print_result_n_n(self, name):
         plt.figure()
-        plt.loglog(range(len(self.estimate_n_n)), self.estimate_n_n)
+        plt.loglog(range(len(self.estimate_n_n)), self.estimate_n_n, color='green')
         plt.title(f'log(K)~log(m), estimate:{self.estimate_n_n[-1]:.3e}')
         plt.savefig(f'{name}_loglog_n_n.png')
         plt.show()
@@ -307,7 +307,7 @@ class Lattice():
         plt.imshow(grid, cmap='binary')
         plt.box(False)
         plt.title(f'longest trail, step: {len(self.longest_trail)}')
-        plt.plot([x for x, y in self.longest_trail], [y for x, y in self.longest_trail], color='blue')
+        plt.plot([x for x, y in self.longest_trail], [y for x, y in self.longest_trail], color='green')
         plt.savefig(f'{name}_longest_trail.png')
         plt.show()
     
@@ -332,7 +332,7 @@ class Lattice():
         plt.yticks(range(11))
         plt.box(False)
         plt.title(f'longest trail ending at (n,n), step: {len(self.longest_trail_n_n)}')
-        plt.plot([x for x, y in self.longest_trail_n_n], [y for x, y in self.longest_trail_n_n], color='blue')
+        plt.plot([x for x, y in self.longest_trail_n_n], [y for x, y in self.longest_trail_n_n], color='green')
         plt.savefig(f'{name}_longest_trail_n_n.png')
         plt.show()
         
